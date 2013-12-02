@@ -1,4 +1,4 @@
-package player;
+ package player;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -41,7 +41,7 @@ public class StreamingMediaPlayer {
 	// Create Handler to call View updates on the main UI thread.
 	private final Handler handler = new Handler();
 
-	private MediaPlayer 	mediaPlayer;
+	private MediaPlayer mediaPlayer;
 	
 	private File downloadingMediaFile; 
 	

@@ -23,6 +23,14 @@ public class AdaptiveStreaming extends Activity {
 	
 	private boolean isPlaying;
 	
+	private int calculatedBandwidth;
+	
+	private static final int LOW = 150;
+	
+	private static final int MEDIUM = 400;
+	
+	private static final int HIGH = 600;
+	
 	private StreamingMediaPlayer audioStreamer;
 	
     @Override
@@ -64,11 +72,28 @@ public class AdaptiveStreaming extends Activity {
     		if ( audioStreamer != null) {
     			audioStreamer.interrupt();
     		}
-    		audioStreamer = new StreamingMediaPlayer(this,textStreamed, playButton, streamButton,progressBar);
-    		//audioStreamer.startStreaming("http://robtowns.com/music/blind_willie.mp3",5208, 216);
-    		audioStreamer.startStreaming("http://robtowns.com/music/blind_willie.mp3",5208, 216);
     		
+    		calculatedBandwidth = 450;
+    		if(calculatedBandwidth <= LOW)
+    		{
+    			audioStreamer = new StreamingMediaPlayer(this, textStreamed, playButton, streamButton, progressBar);
+    			audioStreamer.startStreaming("http://www.cs.rit.edu/~hwb1551/sample1.mp3", 8704, 266);
+    			streamButton.setEnabled(false);
+    		}
+    		
+    		else if(LOW < calculatedBandwidth && calculatedBandwidth <= MEDIUM)
+    		{
+    			audioStreamer = new StreamingMediaPlayer(this, textStreamed, playButton, streamButton, progressBar);
+    			audioStreamer.startStreaming("http://www.cs.rit.edu/~hwb1551/sample2.mp3", 10854, 330);
+    			streamButton.setEnabled(false);
+    		}
+    		
+    		else
+    		{
+    		audioStreamer = new StreamingMediaPlayer(this,textStreamed, playButton, streamButton,progressBar);
+    		audioStreamer.startStreaming("http://www.cs.rit.edu/~hwb1551/sample3.mp3",6656, 10);
     		streamButton.setEnabled(false);
+    		}
     	} catch (IOException e) {
 	    	Log.e(getClass().getName(), "Error starting to stream audio.", e);            		
     	}
