@@ -26,7 +26,7 @@ import android.widget.TextView;
  */
 public class StreamingMediaPlayer {
 
-    private static final int INTIAL_KB_BUFFER =  96*10/8;//assume 96kbps*10secs/8bits per byte
+    private static final int INTIAL_KB_BUFFER =  512*20/8;//assume 96kbps*10secs/8bits per byte
 
 	private TextView textStreamed;
 	
